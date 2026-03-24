@@ -37,6 +37,24 @@
   opacity: 0.3;
 }
 
+/* Animated Sacred Geometry Background */
+.header-geometry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  opacity: 0.06;
+  animation: rotate-slow 120s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate-slow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 .header-content {
   position: relative;
   max-width: 700px;
@@ -261,10 +279,24 @@
   opacity: 1;
 }
 
+.concept-card[data-verdict="supported"]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(34, 197, 94, 0.08);
+}
+.concept-card[data-verdict="partial"]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 158, 11, 0.08);
+}
+.concept-card[data-verdict="unsupported"]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(239, 68, 68, 0.08);
+}
+.concept-card[data-verdict="philosophical"]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
 .concept-card-icon {
-  font-size: 40px;
-  margin-bottom: 14px;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  margin-bottom: 10px;
+  height: 56px;
+  display: flex;
+  align-items: center;
 }
 
 .concept-card h3 {
@@ -344,8 +376,9 @@
 }
 
 .detail-icon {
-  font-size: 64px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .detail-header h1 {

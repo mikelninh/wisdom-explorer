@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ConceptIcon from './ConceptIcons'
 import './App.css'
 
 interface Concept {
@@ -601,8 +602,8 @@ function TruthMeter({ score, verdict }: { score: number; verdict: string }) {
 
 function ConceptCard({ concept, onClick }: { concept: Concept; onClick: () => void }) {
   return (
-    <div className="concept-card" onClick={onClick}>
-      <div className="concept-card-icon">{concept.icon}</div>
+    <div className="concept-card" data-verdict={concept.analysis.verdict} onClick={onClick}>
+      <div className="concept-card-icon"><ConceptIcon id={concept.id} size={56} /></div>
       <h3>{concept.title}</h3>
       <p>{concept.summary}</p>
       <div className="concept-card-footer">
@@ -636,7 +637,7 @@ function ConceptDetail({ concept, onBack, onNavigate }: {
       </button>
 
       <div className="detail-header">
-        <span className="detail-icon">{concept.icon}</span>
+        <span className="detail-icon"><ConceptIcon id={concept.id} size={80} /></span>
         <div>
           <h1>{concept.title}</h1>
           <span className="chapter-badge large">Chapter {concept.chapter}</span>
@@ -831,6 +832,21 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <svg className="header-geometry" viewBox="0 0 500 500" fill="none">
+          {[0,1,2,3,4,5].map(i => (
+            <circle key={`outer-${i}`} cx={250+80*Math.cos(i*Math.PI/3)} cy={250+80*Math.sin(i*Math.PI/3)}
+                    r="80" stroke="#d4a853" strokeWidth="0.8"/>
+          ))}
+          <circle cx="250" cy="250" r="80" stroke="#d4a853" strokeWidth="0.8"/>
+          <circle cx="250" cy="250" r="160" stroke="#8b5cf6" strokeWidth="0.5"/>
+          <circle cx="250" cy="250" r="240" stroke="#8b5cf6" strokeWidth="0.3"/>
+          {[0,1,2,3,4,5].map(i => (
+            <line key={`line-${i}`}
+                  x1={250+160*Math.cos(i*Math.PI/3)} y1={250+160*Math.sin(i*Math.PI/3)}
+                  x2={250+160*Math.cos((i+3)*Math.PI/3)} y2={250+160*Math.sin((i+3)*Math.PI/3)}
+                  stroke="#8b5cf6" strokeWidth="0.3"/>
+          ))}
+        </svg>
         <div className="header-content">
           <h1 className="app-title">
             <span className="title-icon">&#128214;</span>
